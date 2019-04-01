@@ -1,6 +1,7 @@
-/runtime
+/runtime/
 /application/database.php
 .vscode
 .project
 .idea
 /public/upload/*
+database.php
