@@ -49,6 +49,18 @@
      */
     public function notification()
     {
+        $noti = input('post.');
+        
+        $notic = tpCache('distribut.notic');
+        $notic = json_decode($notic,true);
+
+        if ($notic) {
+            $is_config = 1;
+        } else {
+            $is_config = 0;
+        }
+
+        $this->assign('config',$is_config);
         return $this->fetch();
     }
  }
