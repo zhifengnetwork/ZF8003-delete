@@ -255,7 +255,8 @@ class Admin extends Base {
     		}
     	}
     }
-    
+	/**
+ 	* 管理员日志 */    
     public function log(){
     	$p = I('p/d',1);
     	$logs = DB::name('admin_log')->alias('l')->join('__ADMIN__ a','a.admin_id =l.admin_id')->order('log_time DESC')->page($p.',20')->select();
@@ -267,7 +268,6 @@ class Admin extends Base {
 		$this->assign('page',$show);
     	return $this->fetch();
     }
-
 
 	/**
 	 * 供应商列表

@@ -10,7 +10,7 @@ return	array(
 				array('name' => '系统','child' => array(
 						array('name'=>'商城设置','act'=>'index','op'=>'System'),
 						
-						//array('name'=>'支付方式','act'=>'index1','op'=>'System'),
+						// array('name'=>'支付方式','act'=>'index1','op'=>'System'),
 						array('name'=>'地区&配送','act'=>'region','op'=>'Tools'),
 						array('name'=>'短信模板','act'=>'index','op'=>'SmsTemplate'),
 						array('name'=>'消息通知','act'=>'index','op'=>'MessageTemplate'),
@@ -32,7 +32,7 @@ return	array(
 						array('name' => '管理员列表', 'act'=>'index', 'op'=>'Admin'),
 						array('name' => '角色管理', 'act'=>'role', 'op'=>'Admin'),
 						array('name'=>'权限资源列表','act'=>'right_list','op'=>'System'),
-						//array('name' => '管理员日志', 'act'=>'log', 'op'=>'Admin'),
+						array('name' => '管理员日志', 'act'=>'log', 'op'=>'Admin'),
 						array('name' => '供应商列表', 'act'=>'supplier', 'op'=>'Admin'),
 				)),
 			
@@ -59,7 +59,7 @@ return	array(
 	'decorate'=>array('name'=>'装修','child'=>array(
 		array('name' => '模板','child'=>array(
 				array('name' => '模板分类管理', 'act'=>'template_class', 'op'=>'block', 'admin_saas'=>1),
-				//array('name' => '首页装修', 'act'=>'templateList', 'op'=>'Template'),
+				// array('name' => '首页装修', 'act'=>'templateList', 'op'=>'Template'),
 				array('name' => '首页装修', 'act'=>'templateList', 'op'=>'block'),
 				array('name' => '行业模板设置', 'act'=>'templateList2', 'op'=>'block',  'admin_saas'=>1),
 				array('name' => '自定义页面', 'act'=>'pageList', 'op'=>'Block'),
@@ -108,7 +108,7 @@ return	array(
 					//array('name' => '帮助管理', 'act'=>'help_list', 'op'=>'Article'),
 					array('name'=>'友情链接','act'=>'linkList','op'=>'Article'),
 					array('name' => '会员协议', 'act'=>'agreement', 'op'=>'Article'),
-					//array('name' => '公告管理', 'act'=>'notice_list', 'op'=>'Article'),
+					// array('name' => '公告管理', 'act'=>'notice_list', 'op'=>'Article'),
 					array('name' => '专题列表', 'act'=>'topicList', 'op'=>'Topic'),
 			)),
 
