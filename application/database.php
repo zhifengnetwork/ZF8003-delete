@@ -13,13 +13,13 @@ return [
     // 数据库类型
     'type'           => 'mysql',
     // 服务器地址
-    'hostname'       => 'localhost',
+    'hostname'       => 'rm-wz9972dr3ipe61148go.mysql.rds.aliyuncs.com',
     // 数据库名
-    'database'       => 'tpshop2.0',
+    'database'       => 'zf8003',
     // 用户名
-    'username'       => 'root',
+    'username'       => 'zf8003',
     // 密码
-    'password'       => 'root',
+    'password'       => 'Zfwl123456@',
     // 端口
     'hostport'       => '3306',
     // 连接dsn
