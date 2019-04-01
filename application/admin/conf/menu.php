@@ -45,6 +45,15 @@ return	array(
 						//array('name' => 'SQL查询', 'act'=>'log', 'op'=>'Admin'),
 				)),
 
+				array('name' => '微信接入','child' => array(
+					array('name' => '公众号配置', 'act'=>'index', 'op'=>'Wechat'),
+					array('name' => '微信菜单管理', 'act'=>'menu', 'op'=>'Wechat'),
+					array('name' => '自动回复', 'act'=>'auto_reply', 'op'=>'Wechat'),
+					array('name' => '粉丝列表', 'act'=>'fans_list', 'op'=>'Wechat'),
+					array('name' => '模板消息', 'act'=>'template_msg', 'op'=>'Wechat'),
+					array('name' => '素材管理', 'act'=>'materials', 'op'=>'Wechat'),
+				)),
+
 	)),
 		
 	'decorate'=>array('name'=>'装修','child'=>array(
@@ -134,15 +143,6 @@ return	array(
 					array('name' => '分销设置', 'act'=>'distribut', 'op'=>'System'),
 					array('name' => '分成日志', 'act'=>'rebate_log', 'op'=>'Distribut'),
 			)),
-	     
-    	    array('name' => '微信接入','child' => array(
-    	        array('name' => '公众号配置', 'act'=>'index', 'op'=>'Wechat'),
-    	        array('name' => '微信菜单管理', 'act'=>'menu', 'op'=>'Wechat'),
-    	        array('name' => '自动回复', 'act'=>'auto_reply', 'op'=>'Wechat'),
-                array('name' => '粉丝列表', 'act'=>'fans_list', 'op'=>'Wechat'),
-                array('name' => '模板消息', 'act'=>'template_msg', 'op'=>'Wechat'),
-                array('name' => '素材管理', 'act'=>'materials', 'op'=>'Wechat'),
-    	    )),
 	)),
 
  	'member'=>array('name'=>'会员','child'=>array(
