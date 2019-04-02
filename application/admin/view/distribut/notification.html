@@ -1,0 +1,208 @@
+<include file="public/layout" />
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>通知设置</h3>
+                <h5>网站分销通知基本选项设置</h5>
+            </div>
+            <ul class="tab-base nc-row">
+                <foreach name="group_list" item="v" key="k">
+                    <li><a href="{:U('System/index',['inc_type'=> $k])}" <if condition="$k==$inc_type">class="current"
+                            </if>><span>{$v}</span></a></li>
+                </foreach>
+            </ul>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div class="explanation" id="explanation">
+        <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span id="explanationZoom" title="收起提示"></span>
+        </div>
+        <ul>
+            <!--<li>系统平台全局设置,包括基础设置、购物、短信、邮件、水印和分销等相关模块。</li>-->
+        </ul>
+    </div>
+    <form method="post" enctype="multipart/form-data" name="form1" action="{:U('Distribut/notification')}">
+        <input type="hidden" name="inc_type" value="distribut">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">任务处理</dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="task_hadle1"
+                            class="cb-enable <if condition='$config[task_hadle] eq 1'>selected</if>">开启</label>
+                        <label for="task_hadle0"
+                            class="cb-disable <if condition='$config[task_hadle] eq 0'>selected</if>">关闭</label>
+                        <input id="task_hadle1" name="task_hadle" <if
+                            condition="$config['task_hadle'] eq 1">checked="checked"</if> value="1"
+                        type="radio">
+                        <input id="task_hadle0" name="task_hadle" <if
+                            condition="$config['task_hadle'] eq 0">checked="checked"</if> value="0"
+                        type="radio">
+                    </div>
+                    <p class="notic">有任务处理时通知</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">成为分销商</dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="distributor1"
+                            class="cb-enable <if condition='$config[distributor] eq 1'>selected</if>">开启</label>
+                        <label for="distributor0"
+                            class="cb-disable <if condition='$config[distributor] eq 0'>selected</if>">关闭</label>
+                        <input id="distributor1" name="distributor" <if
+                            condition="$config['distributor'] eq 1">checked="checked"</if> value="1"
+                        type="radio">
+                        <input id="distributor0" name="distributor" <if
+                            condition="$config['distributor'] eq 0">checked="checked"</if> value="0"
+                        type="radio">
+                    </div>
+                    <p class="notic">用户成为分销商时通知</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">新增下级</dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="lower_level1"
+                            class="cb-enable <if condition='$config[lower_level] eq 1'>selected</if>">开启</label>
+                        <label for="lower_level0"
+                            class="cb-disable <if condition='$config[lower_level] eq 0'>selected</if>">关闭</label>
+                        <input id="lower_level1" name="lower_level" <if
+                            condition="$config['lower_level'] eq 1">checked="checked"</if> value="1"
+                        type="radio">
+                        <input id="lower_level0" name="lower_level" <if
+                            condition="$config['lower_level'] eq 0">checked="checked"</if> value="0"
+                        type="radio">
+                    </div>
+                    <p class="notic">用户新增下级时通知用户</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">提现申请提交</dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="withdrawal1"
+                            class="cb-enable <if condition='$config[complete_the] eq 1'>selected</if>">开启</label>
+                        <label for="withdrawal0"
+                            class="cb-disable <if condition='$config[withdrawal] eq 0'>selected</if>">关闭</label>
+                        <input id="withdrawal1" name="withdrawal" <if
+                            condition="$config['withdrawal'] eq 1">checked="checked"</if> value="1"
+                        type="radio">
+                        <input id="withdrawal0" name="withdrawal" <if
+                            condition="$config['withdrawal'] eq 0">checked="checked"</if> value="0"
+                        type="radio">
+                    </div>
+                    <p class="notic">用户提交提现申请时通知</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">提现申请审核完成</dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="complete_the_review1"
+                            class="cb-enable <if condition='$config[complete_the_review] eq 1'>selected</if>">开启</label>
+                        <label for="complete_the_review0"
+                            class="cb-disable <if condition='$config[complete_the_review] eq 0'>selected</if>">关闭</label>
+                        <input id="complete_the_review1" name="complete_the_review" <if
+                            condition="$config['order_pay_sms_enable'] eq 1">checked="checked"</if> value="1"
+                        type="radio">
+                        <input id="complete_the_review0" name="complete_the_review" <if
+                            condition="$config['complete_the_review'] eq 0">checked="checked"</if> value="0"
+                        type="radio">
+                    </div>
+                    <p class="notic">提现申请审核完成时通知用户</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">佣金打款</dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="commission_money1"
+                            class="cb-enable <if condition='$config[commission_money] eq 1'>selected</if>">开启</label>
+                        <label for="commission_money0"
+                            class="cb-disable <if condition='$config[commission_money] eq 0'>selected</if>">关闭</label>
+                        <input id="commission_money1" name="commission_money" <if
+                            condition="$config['commission_money'] eq 1">checked="checked"</if> value="1"
+                        type="radio">
+                        <input id="commission_money0" name="commission_money" <if
+                            condition="$config['commission_money'] eq 0">checked="checked"</if> value="0"
+                        type="radio">
+                    </div>
+                    <p class="notic">佣金打款时通知用户</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">下级付款</dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="lower_payment1"
+                            class="cb-enable <if condition='$config[lower_payment] eq 1'>selected</if>">开启</label>
+                        <label for="lower_payment0"
+                            class="cb-disable <if condition='$config[lower_payment] eq 0'>selected</if>">关闭</label>
+                        <input id="lower_payment1" name="lower_payment" <if
+                            condition="$config['lower_payment'] eq 1">checked="checked"</if> value="1"
+                        type="radio">
+                        <input id="lower_payment0" name="lower_payment" <if
+                            condition="$config['lower_payment'] eq 0">checked="checked"</if> value="0"
+                        type="radio">
+                    </div>
+                    <p class="notic">下级付款时通知用户</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">下级确认收货</dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="confirm_the_goods1"
+                            class="cb-enable <if condition='$config[confirm_the_goods] eq 1'>selected</if>">开启</label>
+                        <label for="confirm_the_goods0"
+                            class="cb-disable <if condition='$config[confirm_the_goods] eq 0'>selected</if>">关闭</label>
+                        <input id="confirm_the_goods1" name="confirm_the_goods" <if
+                            condition="$config['confirm_the_goods'] eq 1">checked="checked"</if> value="1"
+                        type="radio">
+                        <input id="confirm_the_goods0" name="confirm_the_goods" <if
+                            condition="$config['confirm_the_goods'] eq 0">checked="checked"</if> value="0"
+                        type="radio">
+                    </div>
+                    <p class="notic">下级确认收货时通知用户</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">分销商等级升级</dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="distributor_upgrade1"
+                            class="cb-enable <if condition='$config[distributor_upgrade] eq 1'>selected</if>">开启</label>
+                        <label for="distributor_upgrade0"
+                            class="cb-disable <if condition='$config[distributor_upgrade] eq 0'>selected</if>">关闭</label>
+                        <input id="distributor_upgrade1" name="distributor_upgrade" <if
+                            condition="$config['distributor_upgrade'] eq 1">checked="checked"</if> value="1"
+                        type="radio">
+                        <input id="distributor_upgrade0" name="distributor_upgrade" <if
+                            condition="$config['distributor_upgrade'] eq 0">checked="checked"</if> value="0"
+                        type="radio">
+                    </div>
+                    <p class="notic">分销商等级升级时通知用户</p>
+                </dd>
+            </dl>
+            <div class="bot"><a href="JavaScript:void(0);" class="ncap-btn-big ncap-btn-green"
+                    onclick="fromsubmit();">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    function fromsubmit() {
+        document.form1.submit();
+    }
+
+</script>
+</body>
+
+</html>
