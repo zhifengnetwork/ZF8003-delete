@@ -10,6 +10,8 @@
 
  namespace app\admin\controller;
 
+ use think\Cache;
+
  /**
   * 分销设置
   */
@@ -49,18 +51,30 @@
      */
     public function notification()
     {
-        $noti = input('post.');
-        
+        $data = input('post.');
+        if ($data) {
+            if (is_array($data)) {
+                $result = array_filter($data,function($k){
+                    return $k != 'distribut';
+                });
+    
+                $result = json_encode($result);
+                tpCache($data['inc_type'],['notic'=>$result]);
+                $where = array('name'=>'notic','inc_type'=>$data['inc_type']);
+                $is_distribut = M('config')->where($where)->find();
+                
+                if ($is_distribut) {
+                    $is_bool = M('config')->where($where)->update(['value'=>$result]);
+                } else {
+                    $is_bool = M('config')->insert(['name'=>'notic','value'=>$result,'inc_type'=>$data['inc_type']]);
+                }
+            }
+        }
+
         $notic = tpCache('distribut.notic');
         $notic = json_decode($notic,true);
 
-        if ($notic) {
-            $is_config = 1;
-        } else {
-            $is_config = 0;
-        }
-
-        $this->assign('config',$is_config);
+        $this->assign('config',$notic);
         return $this->fetch();
     }
  }
