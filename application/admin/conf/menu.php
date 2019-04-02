@@ -58,12 +58,12 @@ return	array(
 		
 	'decorate'=>array('name'=>'装修','child'=>array(
 		array('name' => '模板','child'=>array(
-				array('name' => '模板分类管理', 'act'=>'template_class', 'op'=>'block', 'admin_saas'=>1),
-				// array('name' => '首页装修', 'act'=>'templateList', 'op'=>'Template'),
-				array('name' => '首页装修', 'act'=>'templateList', 'op'=>'block'),
-				array('name' => '行业模板设置', 'act'=>'templateList2', 'op'=>'block',  'admin_saas'=>1),
-				array('name' => '自定义页面', 'act'=>'pageList', 'op'=>'Block'),
-				array('name' => '会员中心自定义', 'act'=>'user_center_menu', 'op'=>'System'),
+				// array('name' => '模板分类管理', 'act'=>'template_class', 'op'=>'block', 'admin_saas'=>1),
+				// // array('name' => '首页装修', 'act'=>'templateList', 'op'=>'Template'),
+				// array('name' => '首页装修', 'act'=>'templateList', 'op'=>'block'),
+				// array('name' => '行业模板设置', 'act'=>'templateList2', 'op'=>'block',  'admin_saas'=>1),
+				// array('name' => '自定义页面', 'act'=>'pageList', 'op'=>'Block'),
+				// array('name' => '会员中心自定义', 'act'=>'user_center_menu', 'op'=>'System'),
 				array('name' => '模板切换', 'act'=>'change', 'op'=>'Template'),
 		)),
 		array('name' => '导航','child' => array(
@@ -151,16 +151,17 @@ return	array(
 		array('name' => '会员管理','child'=>array(
 			array('name'=>'会员列表','act'=>'index','op'=>'User'),
 			array('name'=>'会员等级','act'=>'levelList','op'=>'User'),
+			array('name'=>'会员分组','act'=>'m_group','op'=>'User'),
 		)),
 		array('name' => '充值提现','child'=>array(
 			array('name'=>'充值记录','act'=>'recharge','op'=>'User'),
 			array('name'=>'提现申请','act'=>'withdrawals','op'=>'User'),
 			array('name'=>'提现设置','act'=>'cash','op'=>'System'),
 		)),
-		array('name' => '签到管理','child'=>array(
-			array('name'=>'签到记录','act'=>'signList','op'=>'User'),
-			array('name'=>'签到规则','act'=>'signRule','op'=>'User'),
-		)),
+		// array('name' => '签到管理','child'=>array(
+		// 	array('name'=>'签到记录','act'=>'signList','op'=>'User'),
+		// 	array('name'=>'签到规则','act'=>'signRule','op'=>'User'),
+		// )),
 	)),
 
 	'store'=>array('name'=>'门店','child'=>array(

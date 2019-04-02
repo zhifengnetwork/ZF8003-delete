@@ -256,6 +256,7 @@
             url:"/index.php/Admin/user/ajaxindex/p/"+page,//+tab,
             data : $('#'+tab).serialize(),// 你的formid
             success: function(data){
+                // console.log(data);
                 $("#ajax_return").html('');
                 $("#ajax_return").append(data);
             }
