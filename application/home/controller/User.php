@@ -732,7 +732,8 @@ class User extends Base{
     
     public function bind_auth()
     {
- 
+        // 取消该功能展示
+        $this->redirect('index');
         $list = Db::name('plugin')->cache(true)->where(array('type' => 'login', 'status' => 1))->select();
         if ($list) {
             foreach ($list as $val) {
