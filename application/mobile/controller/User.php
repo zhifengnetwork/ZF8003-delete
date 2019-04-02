@@ -1502,6 +1502,10 @@ class User extends MobileBase
      * vip充值
      */
     public function rechargevip(){
+        // 关闭此项业务
+        $this->redirect('index');
+
+        
         $paymentList = M('Plugin')->where("`type`='payment' and code!='cod' and status = 1 and  scene in(0,1)")->select();
         //微信浏览器
         if (strstr($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')) {
