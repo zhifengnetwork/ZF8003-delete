@@ -24,7 +24,7 @@
             <span id="explanationZoom" title="收起提示"></span>
         </div>
         <ul>
-            <!--<li>系统平台全局设置,包括基础设置、购物、短信、邮件、水印和分销等相关模块。</li>-->
+            <li>点击开启关闭按钮开启或关闭通知。</li>
         </ul>
     </div>
     <form method="post" enctype="multipart/form-data" name="form1" action="{:U('Distribut/notification')}">
@@ -89,7 +89,7 @@
                 <dd class="opt">
                     <div class="onoff">
                         <label for="withdrawal1"
-                            class="cb-enable <if condition='$config[complete_the] eq 1'>selected</if>">开启</label>
+                            class="cb-enable <if condition='$config[withdrawal] eq 1'>selected</if>">开启</label>
                         <label for="withdrawal0"
                             class="cb-disable <if condition='$config[withdrawal] eq 0'>selected</if>">关闭</label>
                         <input id="withdrawal1" name="withdrawal" <if

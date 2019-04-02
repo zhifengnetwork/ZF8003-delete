@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:41:"./application/admin/view/index\index.html";i:1540260088;s:51:"D:\f\ZF8003\application\admin\view\public\left.html";i:1540260088;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:41:"./application/admin/view/index\index.html";i:1554090984;s:59:"D:\workspace\ZF8003\application\admin\view\public\left.html";i:1554090984;}*/ ?>
 <!doctype html>
 <html>
 <head>
