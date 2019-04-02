@@ -1154,6 +1154,7 @@ class User extends MobileBase
             // 统计所有0，1的金额
             $status = ['in','0,1'];   
             $total_money = Db::name('withdrawals')->where(array('user_id' => $this->user_id, 'status' => $status))->sum('money');
+           
             if ($total_money + $data['money'] > $this->user['user_money']) {
                 $this->ajaxReturn(['status'=>0, 'msg'=>"您有提现申请待处理，本次提现余额不足"]);
             }
@@ -1212,14 +1213,14 @@ class User extends MobileBase
             }
         }
         $user_extend=Db::name('user_extend')->where('user_id='.$this->user_id)->find();
-
+        
         //获取用户绑定openId
         $oauthUsers = M("OauthUsers")->where(['user_id'=>$this->user_id, 'oauth'=>'wx'])->find();
         $openid = $oauthUsers['openid'];
         if(empty($oauthUsers)){
             $openid = Db::name('oauth_users')->where(['user_id'=>$this->user_id, 'oauth'=>'weixin'])->value('openid');
         }
-
+// dump( tpCache('cash'));
         $this->assign('user_extend',$user_extend);
         $this->assign('cash_config', tpCache('cash'));//提现配置项
         $this->assign('user_money', $this->user['user_money']);    //用户余额

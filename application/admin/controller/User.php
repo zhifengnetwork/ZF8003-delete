@@ -751,15 +751,41 @@ class User extends Base
         $id_arr = I('id/a');
         $data['status'] = $status = I('status');
         $data['remark'] = I('remark');
-        if ($status == 1) $data['check_time'] = time();
-        if ($status != 1) $data['refuse_time'] = time();
+        // if ($status == 1) $data['check_time'] = time();
+        // if ($status != 1) $data['refuse_time'] = time();
         $ids = implode(',', $id_arr);
         $r = Db::name('withdrawals')->whereIn('id', $ids)->update($data);
-        if ($r !== false) {
+
+        if($status == 1){
+            $data['check_time'] = time();
+            // 扣款
+            $withhold = $this->withhold($id_arr);
+            if ($withhold !== false) {
+                $this->ajaxReturn(array('status' => 1, 'msg' => "操作成功"), 'JSON');
+            } else {
+                $this->ajaxReturn(array('status' => 0, 'msg' => "操作失败"), 'JSON');
+            }                             
+        }else{
+            $data['refuse_time'] = time();
             $this->ajaxReturn(array('status' => 1, 'msg' => "操作成功"), 'JSON');
-        } else {
-            $this->ajaxReturn(array('status' => 0, 'msg' => "操作失败"), 'JSON');
         }
+
+    }
+    /**
+     * 扣款
+     */
+    public function withhold($id_arr){
+            foreach ($id_arr as $key => $value) {
+                # code...
+                // 根据用户提现金额
+                $money = Db::name('withdrawals')->where('id', $value)->find();
+                // dump($money);exit;
+                $withhold = Db::name('users')->where('user_id', $money['user_id'])->setDec('user_money', $money['money']);
+                // dump($$withhold);
+                if($withhold){
+                    return ture;
+                }
+            }
     }
 
     // 用户申请提现
