@@ -28,32 +28,42 @@
             </dl>
             <dl class="row">
                 <dt class="tit">
-                    <label for="level_name"><em>*</em>等级级别</label>
+                    <label for="level"><em>*</em>等级级别</label>
                 </dt>
                 <dd class="opt">
-                    <input type="text" name="level" value="{$info.level}" id="level" class="input-txt">
+                    <input type="text" name="level" value="{$info.level}" id="level" class="input-txt" onkeyup="this.value=this.value.replace(/[^\d]/g,'')">
                     <span class="err" id="err_level"></span>
                     <p class="notic">设置分销商等级级别(如:1,2...)</p>
                 </dd>
             </dl>
             <dl class="row">
                 <dt class="tit">
-                    <label for="level_name"><em>*</em>同级奖励(元)</label>
+                    <label for="rate1"><em>*</em>佣金比率</label>
                 </dt>
                 <dd class="opt">
-                    <input type="text" name="same_reword" value="{$info.same_reword}" id="same_reword" class="input-txt">
-                    <span class="err" id="err_same_reword"></span>
-                    <p class="notic">上下级同等级时的奖励</p>
+                    <input type="text" name="rate1" value="{$info.rate1}" id="rate1" class="input-txt" onkeyup="this.value=/^\d+\.?\d{0,2}$/.test(this.value) ? this.value : ''">
+                    <span class="err" id="err_rate1"></span>
+                    <p class="notic">佣金占比单位为百分比，如输入10，表示该代理等级的用户可获得商品原价10%的佣金</p>
                 </dd>
             </dl>
             <dl class="row">
                 <dt class="tit">
-                    <label for="level_name"><em>*</em>同级奖励层数</label>
+                    <label for="order_money"><em>*</em>升级条件</label>
                 </dt>
                 <dd class="opt">
-                    <input type="text" name="layer" value="{$info.layer}" id="layer" class="input-txt">
-                    <span class="err" id="err_layer"></span>
-                    <p class="notic">上下级同等级时,奖励同级层数</p>
+                    <input type="text" name="order_money" value="{$info.order_money}" id="order_money" class="input-txt" onkeyup="this.value=/^\d+\.?\d{0,2}$/.test(this.value) ? this.value : ''">
+                    <span class="err" id="err_order_money"></span>
+                    <p class="notic">分销商升级要满足的条件</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="permissions">分销权限</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="permissions" value="{$info.permissions}" id="permissions" class="input-txt">
+                    <span class="err" id="err_permissions"></span>
+                    <p class="notic">分销商权限</p>
                 </dd>
             </dl>
             <dl class="row">
@@ -72,7 +82,7 @@
 </div>
 <script type="text/javascript">
     function verifyForm(){
-        $('span.err').show();
+        $('span.err').hide();
         $.ajax({
             type: "POST",
             url: "{:U('Admin/Distribut/handle_level')}",

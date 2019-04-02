@@ -12,6 +12,7 @@
 
  use think\Cache;
  use think\Page;
+ use think\Loader;
 
  /**
   * 分销设置
@@ -78,19 +79,22 @@
     public function handle_level()
     {
         $data = I('post.');
-        // if ($data['act'] == 'add') {
-        //     if (!$agentLevelValidate->batch()->check($data)) {
-        //         $return = ['status' => 0, 'msg' => '添加失败', 'result' => $agentLevelValidate->getError()];
-        //     } else {
-        //         $r = D('agent_level')->add($data);
-        //         if ($r !== false) {
-        //             $return = ['status' => 1, 'msg' => '添加成功', 'result' => $agentLevelValidate->getError()];
-        //         } else {
-        //             $return = ['status' => 0, 'msg' => '添加失败，数据库未响应', 'result' => ''];
-        //         }
-        //     }
-        // }
-        $return = ['status' => 0, 'msg' => '添加失败，数据库未响应', 'result' => ''];
+        $DistributValidate = Loader::validate('Distribut');
+        $return = ['status' => 0, 'msg' => '参数错误', 'result' => ''];//初始化返回信息
+
+        if ($data['act'] == 'add') {
+            if (!$DistributValidate->batch()->check($data)) {
+                $return = ['status' => 0, 'msg' => '添加失败', 'result' => $DistributValidate->getError()];
+            } else {
+                $bool = D('distribut_level')->add($data);
+                if ($bool !== false) {
+                    $return = ['status' => 1, 'msg' => '添加成功', 'result' => $DistributValidate->getError()];
+                } else {
+                    $return = ['status' => 0, 'msg' => '添加失败', 'result' => ''];
+                }
+            }
+        }
+        
         $this->ajaxReturn($return);
     }
 
