@@ -102,7 +102,8 @@ class User extends MobileBase
      */
     public function account()
     {
-        $user = session('user');
+        // $user = session('user');
+        $user = $this->user;
         //获取账户资金记录
         $logic = new UsersLogic();
         $data = $logic->get_account_log($this->user_id, I('get.type'));
