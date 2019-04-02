@@ -11,6 +11,7 @@
  namespace app\admin\controller;
 
  use think\Cache;
+ use think\Page;
 
  /**
   * 分销设置
@@ -39,11 +40,58 @@
     }
 
     /**
-     * 分销商等级
+     * 分销商等级列表
      */
     public function distributor_level()
     {
+        $level_list = M('distribut_level');
+        $p = $this->request->param('p');
+        $res = $level_list->order('level_id')->page($p . ',10')->select();
+        if ($res) {
+            foreach ($res as $val) {
+                $list[] = $val;
+            }
+        }
+        $this->assign('list', $list);
+        $count = $level_list->count();
+        $Page = new Page($count, 10);
+        $show = $Page->show();
+        $this->assign('page', $show);
         return $this->fetch();
+    }
+
+    /**
+     * 等级设置
+     */
+    public function level()
+    {
+        $act = I('get.act', 'add');
+        $this->assign('act', $act);
+        $level_id = I('get.level_id');
+        if ($level_id) {
+            $level_info = D('distribut_level')->where('level_id=' . $level_id)->find();
+            $this->assign('info', $level_info);
+        }
+        return $this->fetch();
+    }
+
+    public function handle_level()
+    {
+        $data = I('post.');
+        // if ($data['act'] == 'add') {
+        //     if (!$agentLevelValidate->batch()->check($data)) {
+        //         $return = ['status' => 0, 'msg' => '添加失败', 'result' => $agentLevelValidate->getError()];
+        //     } else {
+        //         $r = D('agent_level')->add($data);
+        //         if ($r !== false) {
+        //             $return = ['status' => 1, 'msg' => '添加成功', 'result' => $agentLevelValidate->getError()];
+        //         } else {
+        //             $return = ['status' => 0, 'msg' => '添加失败，数据库未响应', 'result' => ''];
+        //         }
+        //     }
+        // }
+        $return = ['status' => 0, 'msg' => '添加失败，数据库未响应', 'result' => ''];
+        $this->ajaxReturn($return);
     }
 
     /**
